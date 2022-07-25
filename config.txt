@@ -1,0 +1,167 @@
+
+        module.exports = {
+            bot: {
+                token: "MTAwMTA2NjM2OTU3MzQ2NjE0Mg.G0-uOJ.6XIU0uAjK8S3YMTse3Z0N93P_YnPSM3Ft6gw_o", // Bot List Bot Token from https://discord.com/developers/applications
+                prefix: "f!",
+                owners: ["1000494611044774049"],
+                mongourl: "mongodb+srv://fosslist:730606Dd.@fosslist.pvr3jzn.mongodb.net/?retryWrites=true&w=majority",  //https://mongodb.com/cloud/atlas/register
+                servers: {
+                    token: "MTAwMTA4Mzc2NzU5MjYwMzY4OA.GjeqUa.AVDjtwYsKwdgvfEgRj-eItG0s1rB6viLM6Y7O0", // Server List Bot Token
+                    prefix: "f."
+                }
+            },
+        
+            website: {
+                callback: "https://fosslist.com", //example : https://vcodes.xyz avoid / at last. 
+                secret: "Xh30r2K7Q6gqMF39sfWApy8RtcgD0q4n",
+                clientID: "1001084064196997190", // Bot client id.
+                tags: [ "Moderation", "Fun", "Minecraft","Economy","Guard","NSFW","Anime","Invite","Music","Logging", "Web Dashboard", "Reddit", "Youtube", "Twitch", "Crypto", "Leveling", "Game", "Roleplay", "Utility", "Turkish" ],
+                languages: [
+                    { flag: 'gb', code: 'en', name: 'English' },
+                    { flag: 'tr', code: 'tr', name: 'Türkçe' },
+                    { flag: 'de', code: 'de', name: 'Deutsch' }
+                ],
+                servers: {
+                    tags: [
+                    {
+                        icon: "fal fa-code",
+                        name: "Development"
+                    },
+                    {
+                        icon: "fal fa-play",
+                        name: "Stream"
+                    },
+                    {
+                        icon: "fal fa-camera",
+                        name: "Media"
+                    },
+                    {
+                        icon: 'fal fa-building',
+                        name: 'Company'
+                    },
+                    {
+                        icon: 'fal fa-gamepad',
+                        name: 'Game'
+                    },
+                    {
+                        icon: 'fal fa-icons',
+                        name: 'Emoji'
+                    },
+                    {
+                        icon: 'fal fa-robot',
+                        name: 'Bot List'
+                    },
+                    {
+                        icon: 'fal fa-server',
+                        name: 'Server List'
+                    },
+                    {
+                        icon: 'fal fa-moon-stars',
+                        name: 'Turkish'
+                    },
+                    {
+                        icon: 'fab fa-discord',
+                        name: 'Support'
+                    },
+                    {
+                        icon: 'fal fa-volume',
+                        name: 'Sound'
+                    },
+                    {
+                        icon: 'fal fa-comments',
+                        name: 'Chatting'
+                    },
+                    {
+                        icon: 'fal fa-lips',
+                        name: 'NSFW'
+                    },
+                    {
+                      icon: "fal fa-comment-slash",
+                      name: "Challange"
+                    },
+                    {
+                      icon: "fal fa-hand-rock",
+                      name: "Protest"
+                    },
+                    {
+                      icon: "fal fa-headphones-alt",
+                      name: "Roleplay"
+                    },
+                    {
+                      icon: "fal fa-grin-alt",
+                      name: "Meme"
+                    },
+                    {
+                      icon: "fal fa-shopping-cart",
+                      name: "Shop"
+                    },
+                    {
+                      icon: "fal fa-desktop",
+                      name: "Technology"
+                    },
+                    {
+                      icon: "fal fa-laugh",
+                      name: "Fun"
+                    },
+                    {
+                      icon: "fal fa-share-alt",
+                      name: "Social"
+                    },
+                    {
+                      icon: "fal fa-laptop",
+                      name: "E-Spor"
+                    },
+                    {
+                      icon: 'fal fa-palette',
+                      name: 'Design'
+                    },
+                    {
+                      icon: 'fal fa-users',
+                      name: 'Community'
+                    }
+                    ]                
+                }
+            },
+        
+            server: {
+                id: "1001096954702475295",
+                invite: "https://discord.gg/XMCp4eXmzN",
+                roles: {
+                    administrator: "1001099176735670333",
+                    moderator: "1001099177796829247",
+                    profile: {
+                        sitecreator : "1001099175976513538",
+                        booster: "",
+                        sponsor: "1001099180074336351",
+                        supporter: "1001099180074336351",
+                        partnerRole: "1001099181273907260"
+                    },
+                    codeshare: {
+                        javascript: "",
+                        html: "",
+                        substructure: "",
+                        bdfd: "", // Bot Designer For Discord
+                        fiveInvite: "",
+                        tenInvite: "",
+                        fifteenInvite: "",
+                        twentyInvite: ""
+                    },
+                    botlist: {
+                        developer: "",
+                        certified_developer: "",
+                        bot: "",
+                        certified_bot: "",
+                    }
+                },
+                channels: {
+                    codelog: "1001099218519330877",
+                    login: "1001099218519330877",
+                    webstatus: "1001099198894186496",
+                    uptimelog: "1001099198894186496",
+                    botlog: "1001099217441402900",
+                    votes: "1001099217441402900"
+                }
+            }
+        
+        
+        }

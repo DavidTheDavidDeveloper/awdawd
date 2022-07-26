@@ -1,123 +1,52 @@
-<%- include('../parts/head', {bot, user, path}) %>
-<style>
-.form-control {
-  background-color: var(--form-input);
-  color: var(--input-color);
-  border: none;
-}
-.form-control:focus {
-  background-color: var(--form-input);
-  color: var(--input-color);
-  border: 3px solid var(--button-green);
-}
-  label {
-    color: var(--label-color)!important;
-  }
-input[type="text"]:disabled {
-  background-color: var(--input-disabled);
-  color: gray;
-  border: none;
-  cursor: not-allowed;
-}
-</style>
-  <br><br>
-<div style="background-color: var(--form-background);" class="container p-4">
-<div class="p-5">
-    <p class="is-size-3 has-text-white d-flex justify-content-center">
-        Are you being told to add bot?&nbsp;<a href="https://discord.com/oauth2/authorize?client_id=859032556803588096&permissions=8&scope=bot" class="btn btn-vcodes p-3">Click Here!</a>
-    </p>
-</div>
-  <script>
-        $(function() {
-        var txt = $("input#guildID");
-        var func = function() {
-            txt.val(txt.val().replace(/\s/g, ''));
-        }
-        txt.keyup(func).blur(func);
-    });
-  </script>
-  <form method="POST">
-     <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                <label><i class="fad fa-fingerprint"></i> Server ID<span style="color: rgb(175, 22, 22)">*</span></label>
-                  <input type="text" name="guildID" id="guildID" class="form-control" placeholder="796048327024050176" required="required" value="" />
-              </div>
-              <div class="form-group">
-                <label><i class="fab fa-discord"></i> Server Invite<span style="color: rgb(175, 22, 22)">*</span></label>
-                 <input type="text" name="link" id="link" class="form-control" placeholder="https://discord.gg/z7dBzygse4"/>
-                 <label>Create one for me</label>
-                 <input type="checkbox" id="createForMe" name="createForMe">
-              </div>
-              <div class="form-group">
-               <label><i class="fad fa-tags"></i> Tags<span style="color: rgb(175, 22, 22)">*</span></label>
-                <select name="tags" translate="no" id="tags" multiple required>
-                  <% config.website.servers.tags.map(a => {%>
-                    <option value="<%= a.name %>" translate="no"><%= a.name %></option>
-                 <% }); %>
-              </select>
-              </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label><i class="fad fa-text"></i> Short Description<span style="color: rgb(175, 22, 22)">*</span></label>
-              <input name="shortDesc" id="shortDesc" class="form-control" placeholder="Short Description" maxlength="300" required="required">
-          </div>
-              <div class="form-group">
-                <label><i class="fad fa-texts"></i> Long Description<span style="color: rgb(175, 22, 22)">*</span>
-                <p class="text-muted">(Html supported but markdown not supported)</p>
-                </label>
-                  <textarea name="longDesc" id="longDesc" class="form-control" minlength="300" required="required" style="width: 100%; height: 300px;"></textarea>
-              </div>
-            </div>
-      </div> 
-      <p class="text-muted"></p>
-      <p class="text-muted">Spaces with <span style="color: rgb(175, 22, 22)">*</span> next to it are required.</p>
-      <button type="button" name="btnSubmit" onclick="clickOnAdd()" id="myButton" class="btn btn-vcodes"><i class="fal fa-paper-plane"></i> Submit</button>
-  </form>
-</div>
-</div>
-<br><br>
-<script>
-function clickOnAdd() {
-    $("#myButton").attr("disabled", true);
-    $("#myButton").html('<i class="p-2 fad fa-spinner fa-w-16 fa-pulse fa-lg"></i>');
-    setTimeout(() => {
-        $.post("/server/add", {
-                guildID: $('#guildID').val(),
-                wallpaper: $('#background').val(),
-                tags: $('#tags').val(),
-                longDesc: $('#longDesc').val(),
-                shortDesc: $('#shortDesc').val(),
-                link: $('#link').val(),
-                autoCreate: $('#createForMe').prop('checked')
-            })
-            .done(function(data) {
-                if (data.error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        closeOnConfirm: false,
-                        text: data.message,
-                        footer: 'Copyright 2022 &copy vCodes.xyz - All right reserved.'
-                    })
-                    $("#myButton").html('<i class="fal fa-paper-plane"></i>&nbsp;Submit');
-                    $("#myButton").attr("disabled", false);
-                    return;
-                } else {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Nice...',
-                        closeOnConfirm: false,
-                        text: data.message,
-                        footer: 'Copyright 2022 &copy vCodes.xyz - All right reserved.'
-                    })
-                    $("#myButton").html('<i class="fal fa-paper-plane"></i>&nbsp;Submit');
-                    $("#myButton").attr("disabled", false);
-                    return;
-                }
-            });
-    }, 2000)
-}
-</script>
-<%- include('../parts/foot') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botrix - Servers</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" 
+    type="image/png" 
+    href="https://cdn.discordapp.com/attachments/747602999035166810/757838697080160356/logo_wo_background.png" />
+    <script src="/js/nav.js"></script>
+    <link rel="shortcut icon" href="">
+    <script src="/js/submit.js"></script>
+    <link type="text/css" rel="stylesheet" media="all" href="/assets/themes/main.css" id="theme_css" />
+    <script src="/js/servers/main.js"></script>
+</head>
+<body onload='onload()'>
+    <%- include("templates/bar") %>
+    <div class='centered' style='padding-top: 100px;'>
+        <div>
+            <h1>Looking to add your server to botrix? Choose one!</h1>
+            <p>Don't see your server? Make sure that the bot is in your server.</p>
+            <br> <p>If you just added the bot to your server, refresh this page!</p>
+            <button onclick="window.open('https://discord.com/api/oauth2/authorize?client_id=764595112868970496&permissions=1074268160&scope=bot')" target="_blank" type="button">Add Botrix Bot!</button>
+        </div>
+    </div>  
+    <div class=''> 
+        <div id='cards'>
+            <% for(let i of guilds) { %>
+                
+                <div class="card" style='background-image:  linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://wallpapercave.com/wp/wp4462550.png"); background-position: center; background-repeat: no-repeat;'>
+                    <div class='iconHolder' style='padding: 20px;'>
+                        <img src="https://cdn.discordapp.com/icons/<%= i.guild.id %>/<%= i.guild.icon %>.png" class="icon">
+                    </div>
+                    <h3 class="title" class=' right: 10px;'>
+                        <%= i.guild.name %>
+                    </h3>
+                    <p class="desc" style='color: white;'>
+                        Members: <%= i.guild.memberCount %>
+                    </p>
+                    <a class="bot-btns" style="border-color: black; width: auto; max-width: 50%; top: -50px; right: 20px; float: right;" href="/servers/add/<%= i.guild.id %>/">Add server</a>
+                    <a class='topTagsCard' style='right: -40px !important;'><%= i.emojis.length  %> Emotes</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <script>var user = "<%= user %> "
+    </script>
+</body>
+</html>
